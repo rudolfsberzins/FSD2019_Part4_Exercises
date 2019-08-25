@@ -1,0 +1,32 @@
+{
+  "name": "blog_page_backend",
+  "version": "0.0.1",
+  "description": "FSD2019 Part4 Exercise",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudolfsberzins/FSD2019_Part4_Exercises.git"
+  },
+  "author": "Rudolfs Berzins",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rudolfsberzins/FSD2019_Part4_Exercises/issues"
+  },
+  "homepage": "https://github.com/rudolfsberzins/FSD2019_Part4_Exercises#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.10"
+  },
+  "devDependencies": {
+    "eslint": "^6.2.2",
+    "nodemon": "^1.19.1"
+  }
+}
