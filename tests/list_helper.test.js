@@ -116,10 +116,30 @@ describe('most blogs', () => {
     })
   })
 
-  test('of list with many blogs will return the blog object with most likes', () => {
+  test('of list with many blogs will return object author with most blogs and blog count', () => {
     expect(listHelper.mostBlogs(blogs)).toEqual({
       'author': 'Robert C. Martin',
       'blogs': 3
+    })
+  })
+})
+
+describe('most likes', () => {
+  test('of empty list is zero', () => {
+    expect(listHelper.mostLikes([])).toBe(0)
+  })
+
+  test('of list with one blog will be object with that blogs author and sum of like count', () => {
+    expect(listHelper.mostLikes(listWithOneBlog)).toEqual({
+      'author': 'Edsger W. Dijkstra',
+      'likes': 5
+    })
+  })
+
+  test('of list with many blogs will return the with most liked blog author and like sum', () => {
+    expect(listHelper.mostLikes(blogs)).toEqual({
+      'author': 'Edsger W. Dijkstra',
+      'likes': 17
     })
   })
 })
