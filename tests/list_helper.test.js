@@ -49,6 +49,16 @@ const blogs = [{
     __v: 0
   }
 ]
+
+const listWithOneBlog = [{
+  _id: '5a422aa71b54a676234d17f8',
+  title: 'Go To Statement Considered Harmful',
+  author: 'Edsger W. Dijkstra',
+  url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+  likes: 5,
+  __v: 0
+}]
+
 test('dummy returns one', () => {
   const blogs = []
 
@@ -58,15 +68,6 @@ test('dummy returns one', () => {
 
 
 describe('total likes', () => {
-  const listWithOneBlog = [{
-    _id: '5a422aa71b54a676234d17f8',
-    title: 'Go To Statement Considered Harmful',
-    author: 'Edsger W. Dijkstra',
-    url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
-    likes: 5,
-    __v: 0
-  }]
-
   test('of empty list is zero', () => {
     expect(listHelper.totalLikes([])).toBe(0)
   })
@@ -82,16 +83,6 @@ describe('total likes', () => {
 })
 
 describe('favorite blog', () => {
-
-  const listWithOneBlog = [{
-    _id: '5a422aa71b54a676234d17f8',
-    title: 'Go To Statement Considered Harmful',
-    author: 'Edsger W. Dijkstra',
-    url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
-    likes: 5,
-    __v: 0
-  }]
-
   test('of empty list is zero', () => {
     expect(listHelper.favoriteBlog([])).toBe(0)
   })
@@ -109,6 +100,26 @@ describe('favorite blog', () => {
       'title': 'Canonical string reduction',
       'author': 'Edsger W. Dijkstra',
       'likes': 12
+    })
+  })
+})
+
+describe('most blogs', () => {
+  test('of empty list is zero', () => {
+    expect(listHelper.mostBlogs([])).toBe(0)
+  })
+
+  test('of list with one blog will be object with that blogs author and blog count', () => {
+    expect(listHelper.mostBlogs(listWithOneBlog)).toEqual({
+      'author': 'Edsger W. Dijkstra',
+      'blogs': 1
+    })
+  })
+
+  test('of list with many blogs will return the blog object with most likes', () => {
+    expect(listHelper.mostBlogs(blogs)).toEqual({
+      'author': 'Robert C. Martin',
+      'blogs': 3
     })
   })
 })
