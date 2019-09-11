@@ -51,6 +51,23 @@ test('a valid blog can be added', async () => {
 
 })
 
+test('an added blog entry with no likes will default to 0 likes', async () => {
+  const newBlog = {
+    title: 'Addable blog',
+    url: 'https://www.bloglist.com'
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+
+  const blogsAtEnd = await helper.blogsInDb()
+
+  const lastBlog = blogsAtEnd[helper.initialBlogs.length]
+
+  expect(lastBlog.likes).toBe(0)
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
