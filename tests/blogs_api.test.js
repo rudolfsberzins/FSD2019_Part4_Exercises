@@ -103,6 +103,30 @@ test('succeeds with status code 204 if id is valid', async () => {
 
 })
 
+test('updates a blog entry given an id and modified blog entry', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+  const blogToModify = blogsAtStart[0]
+
+  const newBlog = {
+    title: 'Addable blog',
+    url: 'https://www.bloglist.com',
+    likes: 12
+  }
+
+  await api
+    .put(`/api/blogs/${blogToModify.id}`)
+    .send(newBlog)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+
+  const blogsAtEnd = await helper.blogsInDb()
+  expect(blogsAtEnd.length).toBe(helper.initialBlogs.length)
+
+  const titles = blogsAtEnd.map(b => b.title)
+  expect(titles).toContain(newBlog.title)
+  expect(titles).not.toContain(blogToModify.title)
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
