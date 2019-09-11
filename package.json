@@ -4,10 +4,10 @@
   "description": "FSD2019 Part4 Exercise",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "watch": "nodemon index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "watch": "cross-env NODE_ENV=development nodemon index.js",
     "lint": "eslint .",
-    "test": "jest --verbose"
+    "test": "cross-env NODE_ENV=test jest --verbose"
   },
   "jest": {
     "testEnvironment": "node"
@@ -30,8 +30,10 @@
     "mongoose": "^5.6.10"
   },
   "devDependencies": {
+    "cross-env": "^5.2.1",
     "eslint": "^6.2.2",
     "jest": "^24.9.0",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
   }
 }
