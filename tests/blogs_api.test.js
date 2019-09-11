@@ -26,6 +26,11 @@ test('all blogs are returned', async () => {
   expect(response.body.length).toBe(helper.initialBlogs.length)
 })
 
+test('blogs entry has "id" property', async () => {
+  const allBlogs = await helper.blogsInDb()
+  expect(allBlogs[0].id).toBeDefined()
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
