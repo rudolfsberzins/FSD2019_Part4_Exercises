@@ -68,6 +68,21 @@ test('an added blog entry with no likes will default to 0 likes', async () => {
   expect(lastBlog.likes).toBe(0)
 })
 
+test('blog without title and url is not added and rejected', async () => {
+  const newBlog = {
+    likes: 12
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400)
+
+  const blogsAtEnd = await helper.blogsInDb()
+
+  expect(blogsAtEnd.length).toBe(helper.initialBlogs.length)
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
